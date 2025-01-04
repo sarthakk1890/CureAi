@@ -1,0 +1,77 @@
+[
+    {
+        "id": "1",
+        "image": "https://static.vecteezy.com/system/resources/previews/027/298/490/non_2x/doctor-posing-portrait-free-photo.jpg",
+        "name": "Dr. John Doe",
+        "specialty": "Orthopedic Specialist",
+        "yearsOfExperience": 10,
+        "hospital": "City Orthopedic Center",
+        "phone": "+1234567890",
+        "about": "Dr. John Doe is a renowned orthopedic specialist with over a decade of experience in treating joint pain, sports injuries, and arthritis. His compassionate care and expert treatment have made him a trusted name in orthopedic healthcare.",
+        "specialties": [
+            "Joint Pain",
+            "Sports Injuries",
+            "Arthritis"
+        ]
+    },
+    {
+        "id": "2",
+        "image": "https://media.istockphoto.com/id/177373093/photo/indian-male-doctor.jpg?s=612x612&w=0&k=20&c=5FkfKdCYERkAg65cQtdqeO_D0JMv6vrEdPw3mX1Lkfg=",
+        "name": "Dr. Jane Smith",
+        "specialty": "Neurological Specialist",
+        "yearsOfExperience": 15,
+        "hospital": "Neurology Care Hospital",
+        "phone": "+9876543210",
+        "about": "Dr. Jane Smith is an expert in neurological care with 15 years of experience. She specializes in stroke recovery, treating back pain, and managing migraines. Her personalized approach ensures every patient receives the best care possible.",
+        "specialties": [
+            "Stroke Recovery",
+            "Back Pain",
+            "Migraines"
+        ]
+    },
+    {
+        "id": "3",
+        "image": "https://cdn.pixabay.com/photo/2024/09/03/15/21/ai-generated-9019520_640.png",
+        "name": "Dr. Emily Brown",
+        "specialty": "Pediatric Physiotherapist",
+        "yearsOfExperience": 8,
+        "hospital": "Children's Therapy Clinic",
+        "phone": "+1122334455",
+        "about": "Dr. Emily Brown is a dedicated pediatric physiotherapist focused on child development, postural issues, and improving motor skills. She is passionate about helping children achieve their full potential through individualized therapy plans.",
+        "specialties": [
+            "Child Development",
+            "Postural Issues",
+            "Motor Skills"
+        ]
+    },
+    {
+        "id": "4",
+        "image": "https://i.pinimg.com/736x/b9/97/a5/b997a530822d0f2c03259070d4590d45.jpg",
+        "name": "Dr. Sarah Lee",
+        "specialty": "Neurological Specialist",
+        "yearsOfExperience": 12,
+        "hospital": "Advanced Neuro Care",
+        "phone": "+1029384756",
+        "about": "Dr. Sarah Lee is an experienced neurological specialist focusing on advanced treatments for stroke recovery, chronic back pain, and migraines. She is known for her cutting-edge techniques and empathetic care.",
+        "specialties": [
+            "Stroke Recovery",
+            "Back Pain",
+            "Migraines"
+        ]
+    },
+    {
+        "id": "5",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST2DIwFY_oKUwagMh0Rx9B6Wy0k7xR0L-lvg&s",
+        "name": "Dr. Michael Roberts",
+        "specialty": "Pediatric Physiotherapist",
+        "yearsOfExperience": 7,
+        "hospital": "Kids Health Center",
+        "phone": "+2233445566",
+        "about": "Dr. Michael Roberts specializes in pediatric physiotherapy, helping children overcome developmental challenges, postural issues, and motor skill difficulties. His caring and innovative approach has made him a favorite among families.",
+        "specialties": [
+            "Child Development",
+            "Postural Issues",
+            "Motor Skills"
+        ]
+    }
+]

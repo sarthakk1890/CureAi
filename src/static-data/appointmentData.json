@@ -1,0 +1,183 @@
+[
+    {
+        "id": "1",
+        "defaultTimeSlots": {
+            "morning": [
+                "9:00 AM",
+                "10:00 AM",
+                "11:00 AM"
+            ],
+            "afternoon": [
+                "2:00 PM",
+                "3:00 PM",
+                "4:00 PM",
+                "5:00 PM"
+            ]
+        },
+        "unavailableDates": [
+            "2025-01-01",
+            "2025-01-15",
+            "2025-01-20",
+            "2025-01-25",
+            "2025-02-06"
+        ],
+        "modifiedTimeSlots": {
+            "2025-01-10": {
+                "morning": [
+                    "10:00 AM",
+                    "11:00 AM"
+                ],
+                "afternoon": [
+                    "2:00 PM",
+                    "3:00 PM"
+                ]
+            },
+            "2025-01-16": {
+                "morning": [
+                    "9:00 AM"
+                ],
+                "afternoon": [
+                    "2:00 PM",
+                    "3:00 PM"
+                ]
+            }
+        }
+    },
+    {
+        "id": "2",
+        "defaultTimeSlots": {
+            "morning": [
+                "9:30 AM",
+                "10:30 AM",
+                "11:30 AM"
+            ],
+            "afternoon": [
+                "2:30 PM",
+                "3:30 PM",
+                "4:30 PM"
+            ]
+        },
+        "unavailableDates": [
+            "2025-01-05",
+            "2025-01-12",
+            "2025-01-19"
+        ],
+        "modifiedTimeSlots": {
+            "2025-01-08": {
+                "morning": [
+                    "10:30 AM"
+                ],
+                "afternoon": [
+                    "2:30 PM",
+                    "3:30 PM"
+                ]
+            }
+        }
+    },
+    {
+        "id": "3",
+        "defaultTimeSlots": {
+            "morning": [
+                "9:30 AM",
+                "10:30 AM",
+                "11:30 AM"
+            ],
+            "afternoon": [
+                "2:30 PM",
+                "3:30 PM",
+                "4:30 PM"
+            ]
+        },
+        "unavailableDates": [
+            "2025-01-05",
+            "2025-01-12",
+            "2025-01-19"
+        ],
+        "modifiedTimeSlots": {
+            "2025-01-08": {
+                "morning": [
+                    "10:30 AM"
+                ],
+                "afternoon": [
+                    "2:30 PM",
+                    "3:30 PM"
+                ]
+            }
+        }
+    },
+    {
+        "id": "4",
+        "defaultTimeSlots": {
+            "morning": [
+                "9:30 AM",
+                "10:30 AM",
+                "11:30 AM"
+            ],
+            "afternoon": [
+                "2:30 PM",
+                "3:30 PM",
+                "4:30 PM"
+            ]
+        },
+        "unavailableDates": [
+            "2025-01-05",
+            "2025-01-12",
+            "2025-01-19"
+        ],
+        "modifiedTimeSlots": {
+            "2025-01-08": {
+                "morning": [
+                    "10:30 AM"
+                ],
+                "afternoon": [
+                    "2:30 PM",
+                    "3:30 PM"
+                ]
+            }
+        }
+    },
+    {
+        "id": "5",
+        "defaultTimeSlots": {
+            "morning": [
+                "9:00 AM",
+                "10:00 AM",
+                "11:00 AM"
+            ],
+            "afternoon": [
+                "2:00 PM",
+                "3:00 PM",
+                "4:00 PM",
+                "5:00 PM"
+            ]
+        },
+        "unavailableDates": [
+            "2025-01-01",
+            "2025-01-15",
+            "2025-01-20",
+            "2025-01-25",
+            "2025-02-06"
+        ],
+        "modifiedTimeSlots": {
+            "2025-01-10": {
+                "morning": [
+                    "10:00 AM",
+                    "11:00 AM"
+                ],
+                "afternoon": [
+                    "2:00 PM",
+                    "3:00 PM"
+                ]
+            },
+            "2025-01-16": {
+                "morning": [
+                    "9:00 AM"
+                ],
+                "afternoon": [
+                    "2:00 PM",
+                    "3:00 PM"
+                ]
+            }
+        }
+    }
+]
