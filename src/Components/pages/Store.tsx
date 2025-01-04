@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Products from '../../static-data/storeData.json';
 import ProductCard from '../layout/ProductCard';
 
+
 const Store: React.FC = () => {
     const navigate = useNavigate();
 
@@ -28,6 +29,7 @@ const Store: React.FC = () => {
                         onClick={() => handleCardClick(index)}
                         className="cursor-pointer transition-transform transform hover:scale-105"
                     >
+                        {/* @ts-ignore */}
                         <ProductCard product={product} />
                     </div>
                 ))}

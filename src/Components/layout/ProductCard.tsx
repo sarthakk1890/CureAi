@@ -6,7 +6,7 @@ type Product = {
     features: string;
     rating: number;
     reviews: number;
-    boughtRecently?: string | null;
+    boughtRecently: string;
     price: {
         currentPrice: number;
         originalPrice: number;
@@ -14,7 +14,7 @@ type Product = {
     };
     delivery: {
         freeDeliveryDate: string;
-        fastestDeliveryDate: string;
+        fastestDeliveryDate?: string; // Make it optional
     };
     availability: string;
     addToCart: boolean;

@@ -23,14 +23,15 @@ interface Appointment {
     symptoms: string;
 }
 
-interface DoctorAvailability {
+type DoctorAvailability = {
     id: string;
-    defaultTimeSlots: TimeSlots;
-    unavailableDates: string[];
-    modifiedTimeSlots: {
-        [key: string]: TimeSlots;
+    defaultTimeSlots: {
+        morning: string[];
+        afternoon: string[];
     };
-}
+    unavailableDates: string[];
+    modifiedTimeSlots: { [key: string]: TimeSlots | undefined }; // Allow undefined
+};
 
 const BookAppointment: React.FC = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
