@@ -1,21 +1,32 @@
 import React from 'react';
 import Slider from 'react-slick';
-import Card from './Card'; // Assuming the Card component is in the same directory.
+import ProductCard from './ProductCard'; // Import the ProductCard component
 // import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 
-interface Specialist {
+interface Product {
+    productName: string;
+    features: string;
+    rating: number;
+    reviews: number;
+    boughtRecently: string;
+    price: {
+        currentPrice: number;
+        originalPrice: number;
+        discount: string;
+    };
+    delivery: {
+        freeDeliveryDate: string;
+        fastestDeliveryDate?: string; // Optional
+    };
+    availability: string;
+    addToCart: boolean;
     image: string;
-    name: string;
-    specialty: string;
-    yearsOfExperience: number;
-    specialties: string[];
 }
 
-interface SpecialistsCarouselProps {
-    specialists: Specialist[];
+interface ProductCarouselProps {
+    products: Product[];
 }
-
 
 // const CustomArrow: React.FC<{ direction: 'left' | 'right'; onClick?: () => void }> = ({
 //     direction,
@@ -36,20 +47,18 @@ interface SpecialistsCarouselProps {
 //     );
 // };
 
-const SpecialistsCarousel: React.FC<SpecialistsCarouselProps> = ({ specialists }) => {
-
+const ProductCarousel: React.FC<ProductCarouselProps> = ({ products }) => {
     const navigate = useNavigate();
 
     const settings = {
         dots: true,
         infinite: true,
         speed: 500,
-        centerMode: true,
-        centerPadding: "0px",
-        autoplay: true,
+        centerMode: false, // Disable center mode for proper scrolling
+        autoplay: true, // Enable if needed
         autoplaySpeed: 3000,
         slidesToShow: 3,
-        slidesToScroll: 1,
+        slidesToScroll: 3, // Scroll three cards at once
         // prevArrow: <CustomArrow direction="left" />,
         // nextArrow: <CustomArrow direction="right" />,
         responsive: [
@@ -57,23 +66,30 @@ const SpecialistsCarousel: React.FC<SpecialistsCarouselProps> = ({ specialists }
                 breakpoint: 1024,
                 settings: {
                     slidesToShow: 2,
+                    slidesToScroll: 2, // Match slides to scroll with slides to show
                 },
             },
             {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 1,
+                    slidesToScroll: 1, // Match slides to scroll with slides to show
                 },
             },
         ],
     };
 
+
     return (
-        <div className="specialists-carousel">
+        <div className="product-carousel overflow-none">
             <Slider {...settings}>
-                {specialists.map((specialist, index) => (
-                    <div key={index} className='pl-4 flex justify-center align-center cursor-pointer' onClick={() => navigate(`/doctor/${index + 1}`)}>
-                        <Card doctor={specialist} />
+                {products.map((product, index) => (
+                    <div
+                        key={index}
+                        className="pl-4 cursor-pointer mb-8"
+                        onClick={() => navigate(`/store/${index}`)}
+                    >
+                        <ProductCard product={product} width='auto' />
                     </div>
                 ))}
             </Slider>
@@ -81,4 +97,4 @@ const SpecialistsCarousel: React.FC<SpecialistsCarouselProps> = ({ specialists }
     );
 };
 
-export default SpecialistsCarousel;
+export default ProductCarousel;

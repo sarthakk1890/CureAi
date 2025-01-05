@@ -30,7 +30,7 @@ const Store: React.FC = () => {
                         className="cursor-pointer transition-transform transform hover:scale-105"
                     >
                         {/* @ts-ignore */}
-                        <ProductCard product={product} />
+                        <ProductCard product={product} width="18rem" />
                     </div>
                 ))}
             </div>

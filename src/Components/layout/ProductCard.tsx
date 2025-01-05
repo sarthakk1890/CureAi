@@ -23,11 +23,15 @@ type Product = {
 
 type ProductCardProps = {
     product: Product;
+    width: string;
 };
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, width }) => {
+
     return (
-        <div className="w-72 bg-white overflow-hidden flex flex-col card-height">
+        <div className="bg-white overflow-hidden flex flex-col card-height"
+            style={{ width }}
+        >
             {/* Image Section */}
             <div className="h-48 flex items-center justify-center bg-gray-50">
                 <img

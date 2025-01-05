@@ -35,7 +35,7 @@ const ProductDetails: React.FC = () => {
     const addedToWishlist = () => toast('Added your wishlist', { icon: '❤️' });
 
     return (
-        <div className="max-w-7xl mx-auto p-6 my-12">
+        <div className="max-w-7xl mx-auto p-6 my-12 pt-[5vh]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Product Image Section */}
                 <div className="space-y-4 mr-6">

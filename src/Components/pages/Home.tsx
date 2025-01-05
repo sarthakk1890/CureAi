@@ -4,6 +4,8 @@ import { RiMentalHealthFill } from 'react-icons/ri';
 import { TbBuildingHospital } from 'react-icons/tb';
 import SpecialistsCarousel from '../layout/SpecialistsCarousel';
 import specialistsData from '../../static-data/doctorData.json';
+import products from '../../static-data/storeData.json';
+import ProductCarousel from '../layout/ProductCarousel';
 
 const Home: React.FC = () => {
     return (
@@ -20,14 +22,41 @@ const Home: React.FC = () => {
                         </p>
                         <button className="btn">See Services</button>
                     </div>
-                    <div className="header__form">
-                        <form>
-                            <h4>Book Now</h4>
-                            <input type="text" placeholder="First Name" />
-                            <input type="text" placeholder="Last Name" />
-                            <input type="text" placeholder="Address" />
-                            <input type="text" placeholder="Phone No." />
-                            <button className="btn form__btn">Book Appointment</button>
+                    <div className="lg:justify-self-end w-full max-w-md">
+                        <form className="bg-white rounded-2xl shadow-xl p-8 space-y-6">
+                            <h4 className="text-2xl font-bold text-primary-dark text-center mb-8">
+                                Book Now
+                            </h4>
+
+                            <div className="space-y-4">
+                                <input
+                                    type="text"
+                                    placeholder="First Name"
+                                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-primary hover:border-primary transition-colors placeholder:text-text-light"
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Last Name"
+                                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-primary hover:border-primary transition-colors placeholder:text-text-light"
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Address"
+                                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-primary hover:border-primary transition-colors placeholder:text-text-light"
+                                />
+                                <input
+                                    type="tel"
+                                    placeholder="Phone No."
+                                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-primary hover:border-primary transition-colors placeholder:text-text-light"
+                                />
+                            </div>
+
+                            <button
+                                type="submit"
+                                className="w-full py-4 bg-primary hover:bg-primary-semidark text-white rounded-lg transition-colors duration-300 font-medium text-lg mt-6"
+                            >
+                                Book Appointment
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -98,6 +127,16 @@ const Home: React.FC = () => {
                 <div className="about__image">
                     <img src="https://www.reshot.com/preview-assets/illustrations/VAZ9BMYX6U/female-doctor-VAZ9BMYX6U-w1600.jpg" alt="about" />
                 </div>
+            </section>
+
+            <section className="section__container service__container p-0">
+                <div className='flex flex-col items-center mb-12'>
+                    <h1 className='section__header text-center'>
+                        Our Products
+                    </h1>
+                </div>
+                {/* @ts-ignore */}
+                <ProductCarousel products={products} />
             </section>
         </div>
     );

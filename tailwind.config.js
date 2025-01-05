@@ -16,6 +16,10 @@ export default {
           light: "#767268", // Light text
         },
       },
+      backgroundImage: {
+        "header-gradient":
+          'linear-gradient(to right, rgba(18, 172, 142, 1), rgba(18, 172, 142, 1)), url("assets/header.jpg")',
+      },
     },
   },
   plugins: [],
