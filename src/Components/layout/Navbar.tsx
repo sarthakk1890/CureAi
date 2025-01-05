@@ -55,7 +55,7 @@ const Navbar: React.FC = () => {
                             Home
                         </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <a
                             href="#about"
                             className={`transition-colors duration-200 ${shouldBeWhite
@@ -98,7 +98,7 @@ const Navbar: React.FC = () => {
                         >
                             Blog
                         </a>
-                    </li>
+                    </li> */}
                     <li>
                         <Link
                             to="/store"
@@ -108,6 +108,17 @@ const Navbar: React.FC = () => {
                                 }`}
                         >
                             Store
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/doc-dashboard"
+                            className={`transition-colors duration-200 ${shouldBeWhite
+                                ? 'text-text-light hover:text-primary-semidark'
+                                : 'text-white hover:text-primary-light'
+                                }`}
+                        >
+                            DocDash
                         </Link>
                     </li>
                 </ul>
