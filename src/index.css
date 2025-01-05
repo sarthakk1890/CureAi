@@ -12,6 +12,7 @@
 :root {
     --primary-color: #06d6ac;
     --primary-color-dark: #00614e;
+    --primary-color-semidark: #03896f;
     --primary-color-light: #e9f7f7;
     --secondary-color: #fb8729;
     --text-dark: #333333;
@@ -21,7 +22,18 @@
 }
 
 ::-webkit-scrollbar {
-    display: none;
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color-semidark);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--primary-color-light);
+    border-radius: 10px;
 }
 
 html,
@@ -695,8 +707,10 @@ header {
 }
 
 .slick-list {
-    padding: 0 !important; /* Prevent gaps on the edges */
-    margin: 0 auto; /* Center the entire slider */
+    padding: 0 !important;
+    /* Prevent gaps on the edges */
+    margin: 0 auto;
+    /* Center the entire slider */
 }
 
 .slick-track {
@@ -708,8 +722,10 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 100%; /* Ensure cards don't exceed their container */
-    padding: 0 10px; /* Add space between cards */
+    max-width: 100%;
+    /* Ensure cards don't exceed their container */
+    padding: 0 10px;
+    /* Add space between cards */
 }
 
 .arrow-icon {
@@ -738,6 +754,7 @@ header {
     right: 10px;
 }
 
-.custom-arrow.left:hover, .custom-arrow.right:hover {
+.custom-arrow.left:hover,
+.custom-arrow.right:hover {
     background-color: var(--primary-color-dark);
 }
