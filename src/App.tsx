@@ -16,6 +16,7 @@ import DashboardLayout from './Components/pages/DoctorDashboard/DashboardLayout'
 import MeetingsPage from './Components/pages/DoctorDashboard/MeetingsPage';
 import EditProfilePage from './Components/pages/DoctorDashboard/EditProfilePage';
 import AvailabilityPage from './Components/pages/DoctorDashboard/AvailabilityPage';
+import Chatbot from './Components/pages/Chatbot/Chatbot';
 
 const App: React.FC = () => {
   const location = useLocation();
@@ -48,6 +49,7 @@ const App: React.FC = () => {
           <Route path="availability" element={<AvailabilityPage />} />
         </Route>
       </Routes>
+      <Chatbot />
       {!shouldHideNavFooter && <Footer />}
     </>
   );

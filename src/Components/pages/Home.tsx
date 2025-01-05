@@ -13,7 +13,7 @@ import testimonials from '../../static-data/testimonials.json';
 const Home: React.FC = () => {
     return (
         <div>
-            <header>
+            <header >
                 <div className="section__container header__container" id="home">
                     <div className="header__content">
                         <h1>Providing an Exceptional Patient Experience</h1>
@@ -65,7 +65,7 @@ const Home: React.FC = () => {
                 </div>
             </header>
 
-            <section className="section__container service__container" id="service">
+            <section className="section__container service__container " id="service">
                 <div className="service__header">
                     <div className="service__header__content mb-4">
                         <h2 className="text-4xl font-bold text-primary-dark mb-2">Our Special service</h2>
@@ -150,36 +150,36 @@ const Home: React.FC = () => {
                     <img
                         src="https://www.reshot.com/preview-assets/illustrations/VAZ9BMYX6U/female-doctor-VAZ9BMYX6U-w1600.jpg"
                         alt="About Us"
-                        className="rounded-xl shadow-lg"
+                        className="rounded-xl shadow-lg w-full"
                     />
                 </div>
             </section>
 
             <section
-                className="section__container flex flex-col-reverse lg:flex-row items-center gap-12 px-6 py-2 lg:py-24"
+                className="section__container flex flex-col-reverse lg:flex-row items-center gap-12 px-6 py-8 lg:py-24"
                 id="blog"
             >
                 {/* Image Section */}
-                <div className="why__image w-full lg:w-1/2">
+                <div className="why__image w-full lg:w-1/2 flex justify-center">
                     <img
                         src="https://img.freepik.com/free-vector/hand-drawn-flat-iranian-women-illustration_23-2149857837.jpg"
                         alt="Why Choose Us"
-                        className="rounded-xl shadow-lg"
+                        className="rounded-xl shadow-lg w-full h-auto"
                     />
                 </div>
 
                 {/* Content Section */}
-                <div className="why__content w-full lg:w-1/2 space-y-6">
+                <div className="why__content w-full lg:w-1/2 space-y-6 text-center lg:text-left">
                     <h2 className="text-4xl font-bold text-primary-dark">Why Choose Us?</h2>
-                    <p className="text-gray-700 leading-relaxed text-justify">
+                    <p className="text-gray-700 leading-relaxed">
                         With a steadfast commitment to your well-being, our team of highly trained healthcare professionals ensures that you receive nothing short of exceptional patient experiences.
                     </p>
 
                     {/* Grid Section */}
-                    <div className="why__grid grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    <div className="why__grid flex flex-wrap">
                         {/* Card 1 */}
                         <div className="flex items-start space-x-4">
-                            <span className="bg-primary-semidark p-4 text-white rounded-full shadow-md hover:shadow-lg transition-transform transform hover:scale-110" style={{ color: "white" }}>
+                            <span className="bg-primary-semidark p-4 text-white rounded-full shadow-md hover:shadow-lg transition-transform transform hover:scale-110">
                                 <RiHospitalLine size={30} />
                             </span>
                             <div>
@@ -192,7 +192,7 @@ const Home: React.FC = () => {
 
                         {/* Card 2 */}
                         <div className="flex items-start space-x-4">
-                            <span className="bg-primary-semidark p-4 text-white rounded-full shadow-md hover:shadow-lg transition-transform transform hover:scale-110" style={{ color: "white" }}>
+                            <span className="bg-primary-semidark p-4 text-white rounded-full shadow-md hover:shadow-lg transition-transform transform hover:scale-110">
                                 <RiHandHeartLine size={30} />
                             </span>
                             <div>
@@ -205,8 +205,7 @@ const Home: React.FC = () => {
 
                         {/* Card 3 */}
                         <div className="flex items-start space-x-4">
-                            <span className="bg-primary-semidark p-4 text-white rounded-full shadow-md hover:shadow-lg transition-transform transform hover:scale-110"
-                                style={{ color: "white" }}>
+                            <span className="bg-primary-semidark p-4 text-white rounded-full shadow-md hover:shadow-lg transition-transform transform hover:scale-110">
                                 <RiTruckLine size={30} />
                             </span>
                             <div>
@@ -220,6 +219,7 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
+
             <section className="section__container service__container">
                 <div className='flex flex-col items-center'>
                     <h1 className='text-4xl font-bold text-primary-dark mb-2 text-center'>
@@ -230,7 +230,7 @@ const Home: React.FC = () => {
                 <SpecialistsCarousel specialists={specialistsData} />
             </section>
 
-            <section className="section__container service__container p-0">
+            <section className="section__container service__container p-0 overflow-x-hidden">
                 <div className='flex flex-col items-center mb-12'>
                     <h1 className='text-4xl font-bold text-primary-dark text-center'>
                         Our Products
