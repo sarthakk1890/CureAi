@@ -10,7 +10,10 @@ export default {
           semidark: "#038e7d", // Semi-dark variant
           light: "#e9f7f7", // Light variant
         },
-        secondary: "#fb8729", // Secondary color
+        secondary: {
+          DEFAULT: "#fb8729",
+          dark: "#E26F20",
+        }, // Secondary color
         text: {
           dark: "#333333", // Dark text
           light: "#767268", // Light text

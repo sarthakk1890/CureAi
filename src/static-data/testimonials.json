@@ -1,0 +1,30 @@
+[
+    {
+        "id": "1",
+        "name": "Rahul Singh Manral",
+        "designation": "Programmer",
+        "image": "https://engineering.unl.edu/images/staff/Kayla-Person.jpg",
+        "review": "I had a sports injury that was hindering my performance. Thanks to the expert care and guidance from the physiotherapists here, I was able to recover quickly and get back to my training."
+    },
+    {
+        "id": "2",
+        "name": "Pooja Jain",
+        "designation": "Singer",
+        "image": "https://www.wilsoncenter.org/sites/default/files/media/images/person/james-person-1.jpg",
+        "review": "Suffering from chronic back pain, I sought help from this clinic. The personalized treatment plan and exercises recommended by the physiotherapists have significantly improved my condition."
+    },
+    {
+        "id": "3",
+        "name": "Ishika Sheoran",
+        "designation": "Dancer",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb2DFkEQQFyU0vPOZoUP4mMyMGEjYycTfb3A&s",
+        "review": "After a knee replacement surgery, I needed rehabilitation. The team here provided exceptional care, and I am now able to walk without any discomfort. Highly recommend their services."
+    },
+    {
+        "id": "4",
+        "name": "Ashish",
+        "designation": "Student",
+        "image": "https://t4.ftcdn.net/jpg/05/31/37/89/360_F_531378938_xwRjN9e5ramdPj2coDwHrwk9QHckVa5Y.jpg",
+        "review": "I had postural issues due to long hours of studying. The physiotherapists not only addressed my concerns but also educated me on preventive measures. I feel more confident and pain-free now."
+    }
+]

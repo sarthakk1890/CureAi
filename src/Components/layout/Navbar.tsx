@@ -55,50 +55,6 @@ const Navbar: React.FC = () => {
                             Home
                         </Link>
                     </li>
-                    {/* <li>
-                        <a
-                            href="#about"
-                            className={`transition-colors duration-200 ${shouldBeWhite
-                                ? 'text-text-light hover:text-primary-semidark'
-                                : 'text-white hover:text-primary-light'
-                                }`}
-                        >
-                            About Us
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#service"
-                            className={`transition-colors duration-200 ${shouldBeWhite
-                                ? 'text-text-light hover:text-primary-semidark'
-                                : 'text-white hover:text-primary-light'
-                                }`}
-                        >
-                            Services
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#pages"
-                            className={`transition-colors duration-200 ${shouldBeWhite
-                                ? 'text-text-light hover:text-primary-semidark'
-                                : 'text-white hover:text-primary-light'
-                                }`}
-                        >
-                            Pages
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#blog"
-                            className={`transition-colors duration-200 ${shouldBeWhite
-                                ? 'text-text-light hover:text-primary-semidark'
-                                : 'text-white hover:text-primary-light'
-                                }`}
-                        >
-                            Blog
-                        </a>
-                    </li> */}
                     <li>
                         <Link
                             to="/store"
@@ -136,8 +92,8 @@ const Navbar: React.FC = () => {
                     </Link>
                     <button
                         className={`px-6 py-2 rounded-lg transition-colors duration-200 font-medium ${shouldBeWhite
-                            ? 'bg-primary hover:bg-primary-semidark text-white'
-                            : 'bg-white text-primary hover:bg-primary-light'
+                            ? 'bg-secondary hover:bg-secondary-dark text-white'
+                            : 'bg-white text-secondary hover:bg-secondary hover:text-white'
                             }`}
                     >
                         Contact Us
