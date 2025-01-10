@@ -35,9 +35,14 @@ const translations = {
         bookingPrompt: "Please book an appointment with our top doctors and other healthcare professionals and download our app for personal guidance.",
         typeMessage: "Type your message...",
         send: "Send",
+        analyzing: "Analyzing...",
         healthAssistant: "Health Assistant",
         resetChat: "Reset Chat",
-        close: "Close"
+        close: "Close",
+        selectSymptoms: "Select your symptoms:",
+        selectCondition: "Select your Post Operation Condition:",
+        selectAdvice: "Select the type of advice you need:",
+        confirm: "Confirm Selection"
     },
     hi: {
         welcomeMessage: "भाषा चुनें - अंग्रेजी/हिंदी",
@@ -54,9 +59,14 @@ const translations = {
         bookingPrompt: "कृपया हमारे शीर्ष डॉक्टरों और अन्य स्वास्थ्य पेशेवरों के साथ एक अपॉइंटमेंट बुक करें और व्यक्तिगत मार्गदर्शन के लिए हमारा ऐप डाउनलोड करें।",
         typeMessage: "अपना संदेश टाइप करें...",
         send: "भेजें",
+        analyzing: "विश्लेषण कर रहे हैं...",
         healthAssistant: "स्वास्थ्य सहायक",
         resetChat: "चैट रीसेट करें",
-        close: "बंद करें"
+        close: "बंद करें",
+        selectSymptoms: "अपने लक्षण चुनें:",
+        selectCondition: "अपनी सर्जरी के बाद की स्थिति चुनें:",
+        selectAdvice: "किस प्रकार की सलाह चाहिए चुनें:",
+        confirm: "चयन की पुष्टि करें"
     }
 };
 
@@ -108,7 +118,7 @@ const symptomCategories = {
             "Coughing",
             "Fatigue",
             "Palpitations"
-      ],
+        ],
         "Dermatology": [
             "Skin Rash",
             "Itching",
@@ -162,6 +172,17 @@ const symptomCategories = {
     }
 };
 
+// Common symptoms data
+const commonSymptoms = {
+    en: [
+        "Morning stiffness",
+        "Night pain"
+    ],
+    hi: [
+        "सुबह की अकड़न",
+        "रात का दर्द"
+    ]
+};
 
 const postOpConditions = {
     en: {
@@ -225,7 +246,7 @@ const postOpConditions = {
     },
     hi: {
         "हड्डी से संबंधित": [
-            "कूल्हे की सर्जरी/बदलना", 
+            "कूल्हे की सर्जरी/बदलना",
             "घुटने की सर्जरी/बदलना",
             "कंधे की सर्जरी",
             "लिगामेंट सर्जरी",
@@ -304,6 +325,7 @@ export {
     translations,
     helpOptions,
     symptomCategories,
+    commonSymptoms,
     postOpConditions,
     generalAdviceOptions
 };

@@ -4,10 +4,10 @@ import { IoMdClose } from "react-icons/io";
 import { BiRefresh } from "react-icons/bi";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
-import { Message, QueryData, translations, helpOptions, symptomCategories, postOpConditions, generalAdviceOptions } from "./health-chatbot-data";
+import { Message, QueryData, translations, helpOptions, symptomCategories, postOpConditions, generalAdviceOptions, commonSymptoms } from "./health-chatbot-data";
 
 enum ChatState {
-    // LANGUAGE_SELECT,
+    LANGUAGE_SELECT,
     NAME_INPUT,
     AGE_INPUT,
     GENDER_INPUT,
@@ -27,55 +27,65 @@ enum ChatState {
 export default function HealthChatWidget() {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([]);
-    const [queryData, setQueryData] = useState<QueryData>({ language: "en" }); // Set default language
+    const [queryData, setQueryData] = useState<QueryData>({});
     const [input, setInput] = useState("");
-    const [chatState, setChatState] = useState<ChatState>(ChatState.NAME_INPUT);
+    const [chatState, setChatState] = useState<ChatState>(ChatState.LANGUAGE_SELECT);
     const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
     const [selectedCondition, setSelectedCondition] = useState<string>("");
     const [selectedAdvice, setSelectedAdvice] = useState<string>("");
-    const [showButtons, setShowButtons] = useState<boolean>(false);
+    const [showButtons, setShowButtons] = useState<boolean>(true);
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
-
-    useEffect(() => {
-        if (isOpen && messages.length === 0) {
-            botReply(getCurrentTranslation().doctorIntro);
-            botReply(getCurrentTranslation().nameQuestion);
-        }
-    }, [isOpen]);
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
+    useEffect(() => {
+        if (isOpen) {
+            setMessages([]);
+            setQueryData({});
+            setChatState(ChatState.LANGUAGE_SELECT);
+            setSelectedSymptoms([]);
+            setSelectedCondition("");
+            setSelectedAdvice("");
+            botReply(translations["en"].welcomeMessage);
+            setShowButtons(true);
+        }
+    }, [isOpen]);
+
     const getCurrentTranslation = () => {
-        return translations["en"]; // Always return English translations
+        return translations[queryData.language || "en"];
     };
 
     const botReply = (text: string) => {
         setMessages(prev => [...prev, { sender: "bot", text }]);
     };
 
-    // Add this new function to handle language selection
-    // const handleLanguageSelect = (language: string) => {
-    //     setQueryData({ ...queryData, language });
-    //     setShowButtons(false);
-    //     botReply(translations[language].doctorIntro);
-    //     botReply(translations[language].nameQuestion);
-    //     setChatState(ChatState.NAME_INPUT);
-    // };
+    const handleLanguageSelect = (language: "en" | "hi") => {
+        setQueryData({ ...queryData, language });
+        setShowButtons(false);
+        // Clear previous messages
+        setMessages([]);
+        // Add new messages in selected language
+        botReply(translations[language].doctorIntro);
+        botReply(translations[language].nameQuestion);
+        setChatState(ChatState.NAME_INPUT);
+    };
 
     const handleUserInput = async (text: string) => {
         setMessages(prev => [...prev, { sender: "user", text }]);
 
         switch (chatState) {
-            // case ChatState.LANGUAGE_SELECT:
-            //     // const lang = text.toLowerCase() === "hindi" || text.toLowerCase() === "हिंदी" ? "hi" : "en";
-            //     const lang = "en";
-            //     setQueryData({ ...queryData, language: lang });
-            //     // botReply(getCurrentTranslation().doctorIntro);
-            //     // botReply(getCurrentTranslation().nameQuestion);
-            //     setChatState(ChatState.NAME_INPUT);
-            //     break;
+            case ChatState.LANGUAGE_SELECT:
+                const lang = text.toLowerCase() === "hindi" || text.toLowerCase() === "हिंदी" ? "hi" : "en";
+                setQueryData({ ...queryData, language: lang });
+                setShowButtons(false);
+                // Clear previous messages and add new ones in selected language
+                setMessages([]);
+                botReply(translations[lang].doctorIntro);
+                botReply(translations[lang].nameQuestion);
+                setChatState(ChatState.NAME_INPUT);
+                break;
 
             case ChatState.NAME_INPUT:
                 setQueryData({ ...queryData, name: text });
@@ -91,8 +101,9 @@ export default function HealthChatWidget() {
 
             case ChatState.GENDER_INPUT:
                 setQueryData({ ...queryData, gender: text });
+                botReply(getCurrentTranslation().helpOptions);
                 setShowButtons(true);
-                displayHelpOptions();
+                setChatState(ChatState.HELP_OPTIONS);
                 break;
 
             case ChatState.HELP_OPTIONS:
@@ -102,6 +113,7 @@ export default function HealthChatWidget() {
             case ChatState.CONDITION_SYMPTOMS:
                 setQueryData({ ...queryData, symptoms: text });
                 botReply(getCurrentTranslation().durationQuestion);
+                setShowButtons(false);
                 setChatState(ChatState.DURATION_INPUT);
                 break;
 
@@ -144,44 +156,46 @@ export default function HealthChatWidget() {
         }
     };
 
-    const displayHelpOptions = () => {
-        // const options = helpOptions[queryData.language || "en"];
-        // const optionsText = options.map(opt => `* ${opt}`).join("\n");
-        botReply(getCurrentTranslation().helpOptions);
-        setChatState(ChatState.HELP_OPTIONS);
-    };
+    // const displayHelpOptions = () => {
+    //     // const options = helpOptions[queryData.language || "en"];
+    //     // const optionsText = options.map(opt => `* ${opt}`).join("\n");
+    //     botReply(getCurrentTranslation().helpOptions);
+    //     setChatState(ChatState.HELP_OPTIONS);
+    // };
 
     const handleHelpOptionSelection = (selection: string) => {
-        if (selection.toLowerCase().includes("condition")) {
+        const lang = queryData.language || "en";
+
+        if (selection === helpOptions[lang][0]) {
+            // Know about your condition
             displaySymptomCategories();
             setChatState(ChatState.CONDITION_SYMPTOMS);
-        } else if (selection.toLowerCase().includes("surgery")) {
+        } else if (selection === helpOptions[lang][1]) {
+            // Post-Surgery Rehabilitation
             displayPostSurgeryOptions();
             setChatState(ChatState.POST_SURGERY);
-        } else if (selection.toLowerCase().includes("advice")) {
+        } else if (selection === helpOptions[lang][2]) {
+            // General Advice
             displayGeneralAdviceOptions();
             setChatState(ChatState.GENERAL_ADVICE);
         }
     };
 
     const displaySymptomCategories = () => {
-        const categories = symptomCategories[queryData.language || "en"];
-        let messageText = "";
-        Object.entries(categories).forEach(([category, symptoms]) => {
-            messageText += `*${category}*\n${symptoms.map(s => `* ${s}`).join('\n')}\n\n`;
-        });
-        botReply("Select your symptoms");
+        // const categories = symptomCategories[queryData.language || "en"];
+        botReply(getCurrentTranslation().selectSymptoms || "Select your symptoms:");
         setShowButtons(true);
     };
 
-
     const displayPostSurgeryOptions = () => {
-        const conditions = postOpConditions[queryData.language || "en"];
-        let messageText = "";
-        Object.entries(conditions).forEach(([category, items]) => {
-            messageText += `*${category}*\n${items.map(i => `* ${i}`).join('\n')}\n\n`;
-        });
-        botReply("Select your Post Operation Condition");
+        // const conditions = postOpConditions[queryData.language || "en"];
+        botReply(getCurrentTranslation().selectCondition || "Select your Post Operation Condition:");
+        setShowButtons(true);
+    };
+
+    const displayGeneralAdviceOptions = () => {
+        botReply(getCurrentTranslation().selectAdvice || "Select the type of advice you need:");
+        setShowButtons(true);
     };
 
     const handlePostSurgerySelection = async (selection: string) => {
@@ -191,8 +205,7 @@ export default function HealthChatWidget() {
         const updatedMessages = [...messages, { sender: "user" as const, text: selection }];
         setMessages(updatedMessages);
 
-        // Then add the analyzing message
-        setMessages([...updatedMessages, { sender: "bot" as const, text: "Analyzing..." }]);
+        botReply(getCurrentTranslation().analyzing);
 
         // Format condition details for Gemini
         const formattedQuery = `
@@ -237,19 +250,9 @@ ${queryData.language === 'hi' ? 'कृपया हिंदी में ज�
         setChatState(ChatState.COMPLETE);
     };
 
-
-    const displayGeneralAdviceOptions = () => {
-        // const options = generalAdviceOptions[queryData.language || "en"];
-        // const messageText = options.map(opt => `* ${opt}`).join('\n');
-        botReply(getCurrentTranslation().helpOptions);
-    };
-
     const displayOtherSymptoms = () => {
-        const commonSymptoms = [
-            "morning stiffness",
-            "night pain"
-        ];
-        botReply(commonSymptoms.map(s => `* ${s}`).join("\n"));
+        const symptoms = commonSymptoms[queryData.language || "en"];
+        botReply(symptoms.map(s => `* ${s}`).join("\n"));
         setChatState(ChatState.OTHER_SYMPTOMS);
     };
 
@@ -259,9 +262,7 @@ ${queryData.language === 'hi' ? 'कृपया हिंदी में ज�
 
         const updatedMessages = [...messages, { sender: "user" as const, text: selection }];
         setMessages(updatedMessages);
-
-        // Then add the analyzing message
-        setMessages([...updatedMessages, { sender: "bot" as const, text: "Analyzing..." }]);
+        botReply(getCurrentTranslation().analyzing);
 
         const formattedQuery = `
 Patient Information:
@@ -318,7 +319,7 @@ ${queryData.language === 'hi' ? 'कृपया हिंदी में ज�
 
     const submitToGemini = async () => {
         const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-        setMessages([...messages, { sender: "bot", text: "Analyzing..." }]);
+        botReply(getCurrentTranslation().analyzing);
 
         const formattedQuery = `
 Patient Information:
@@ -367,45 +368,45 @@ ${queryData.language === 'hi' ? 'कृपया हिंदी में ज�
 
     const resetChat = () => {
         setMessages([]);
-        setQueryData({ language: "en" }); // Reset with English as default
-        setChatState(ChatState.NAME_INPUT);
+        setQueryData({}); // Reset with empty object
+        setChatState(ChatState.LANGUAGE_SELECT); // Reset to language selection
         setSelectedSymptoms([]);
         setSelectedCondition("");
         setSelectedAdvice("");
-        botReply(getCurrentTranslation().doctorIntro);
-        botReply(getCurrentTranslation().nameQuestion);
+        setShowButtons(true); // Show language selection buttons
+        botReply(translations["en"].welcomeMessage); // Show initial welcome message
     };
 
     const renderButtons = () => {
+        const lang = queryData.language || "en";
         switch (chatState) {
-            // case ChatState.LANGUAGE_SELECT:
-            //     return (
-            //         <div className="flex gap-2 justify-center">
-            //             <button
-            //                 onClick={() => handleLanguageSelect("en")}
-            //                 className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark"
-            //             >
-            //                 English
-            //             </button>
-            //             <button
-            //                 onClick={() => handleLanguageSelect("hi")}
-            //                 className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark"
-            //             >
-            //                 हिंदी
-            //             </button>
-            //         </div>
-            //     );
+            case ChatState.LANGUAGE_SELECT:
+                return (
+                    <div className="flex gap-2 justify-center">
+                        <button
+                            onClick={() => handleLanguageSelect("en")}
+                            className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark"
+                        >
+                            English
+                        </button>
+                        <button
+                            onClick={() => handleLanguageSelect("hi")}
+                            className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark"
+                        >
+                            हिंदी
+                        </button>
+                    </div>
+                );
 
             case ChatState.HELP_OPTIONS:
                 return (
                     <div className="flex flex-col gap-2">
-                        {helpOptions[queryData.language || "en"].map((option) => (
+                        {helpOptions[lang].map((option) => (
                             <button
                                 key={option}
                                 onClick={() => {
                                     setMessages(prev => [...prev, { sender: "user", text: option }]);
                                     handleHelpOptionSelection(option);
-                                    setSelectedSymptoms([]);
                                 }}
                                 className="px-4 py-2 bg-primary-semidark text-white hover:bg-primary-dark hover:text-white rounded-lg text-left transition-colors duration-200"
                             >
@@ -416,7 +417,7 @@ ${queryData.language === 'hi' ? 'कृपया हिंदी में ज�
                 );
 
             case ChatState.CONDITION_SYMPTOMS:
-                const categories = symptomCategories[queryData.language || "en"];
+                const categories = symptomCategories[lang];
                 return (
                     <div className="max-h-60 overflow-y-auto">
                         {Object.entries(categories).map(([category, symptoms]) => (
@@ -446,23 +447,19 @@ ${queryData.language === 'hi' ? 'कृपया हिंदी में ज�
                             </div>
                         ))}
                         {selectedSymptoms.length > 0 && (
-                            <div className="mt-4 space-y-2">
-                                {/* <div className="text-sm text-gray-600">
-                                    Selected symptoms: {selectedSymptoms.join(", ")}
-                                </div> */}
-                                <button
-                                    onClick={() => {
-                                        handleUserInput(selectedSymptoms.join(", "));
-                                        setShowButtons(false);
-                                    }}
-                                    className="w-full px-4 py-2 bg-secondary text-white rounded-lg hover:bg-secondary-dark transition-colors duration-200"
-                                >
-                                    Confirm Selection
-                                </button>
-                            </div>
+                            <button
+                                onClick={() => {
+                                    handleUserInput(selectedSymptoms.join(", "));
+                                    setShowButtons(false);
+                                }}
+                                className="w-full px-4 py-2 bg-secondary text-white rounded-lg hover:bg-secondary-dark transition-colors duration-200"
+                            >
+                                {translations[lang].confirm || "Confirm Selection"}
+                            </button>
                         )}
                     </div>
                 );
+
 
             case ChatState.POST_SURGERY:
                 const conditions = postOpConditions[queryData.language || "en"];
