@@ -56,10 +56,10 @@ const DashboardLayout = () => {
                     <Link to="/">
                         <div className="text-2xl font-bold">
                             <span className="transition-colors duration-300 text-primary-dark">
-                                Physio
+                                Cure
                             </span>
                             <span className="transition-colors duration-300 text-secondary">
-                                Care
+                                Ai
                             </span>
                         </div>
                     </Link>

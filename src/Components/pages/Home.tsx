@@ -135,13 +135,13 @@ const Home: React.FC = () => {
                 <div className="about__content w-full lg:w-1/2 space-y-6">
                     <h2 className="text-4xl font-bold text-primary-dark">About Us</h2>
                     <p className="text-gray-700 leading-relaxed text-justify">
-                        Welcome to PhysioCare, your trusted destination for expert physiotherapy services and comprehensive rehabilitation solutions. We are dedicated to helping you regain mobility, reduce pain, and improve your overall quality of life through personalized care and advanced therapeutic techniques.
+                        Welcome to CureAi, your trusted destination for expert physiotherapy services and comprehensive rehabilitation solutions. We are dedicated to helping you regain mobility, reduce pain, and improve your overall quality of life through personalized care and advanced therapeutic techniques.
                     </p>
                     <p className="text-gray-700 leading-relaxed text-justify">
                         Explore our extensive range of physiotherapy treatments and wellness programs designed to address various conditions, including musculoskeletal injuries, neurological disorders, pediatric needs, and post-surgical rehabilitation. Our team of skilled physiotherapists is committed to educating, empowering, and guiding you toward a healthier, more active lifestyle.
                     </p>
                     <p className="text-gray-700 leading-relaxed text-justify">
-                        Discover practical exercise routines, ergonomic advice, and lifestyle modifications to enhance your physical and mental well-being. At PhysioCare, we believe that small, consistent steps can lead to significant improvements in your recovery journey. Let us partner with you in achieving your health and mobility goals.
+                        Discover practical exercise routines, ergonomic advice, and lifestyle modifications to enhance your physical and mental well-being. At CureAi, we believe that small, consistent steps can lead to significant improvements in your recovery journey. Let us partner with you in achieving your health and mobility goals.
                     </p>
                 </div>
 

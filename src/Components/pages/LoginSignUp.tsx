@@ -36,8 +36,8 @@ const LoginSignUp = () => {
             {/* Logo */}
             <div className="mb-8 text-center">
                 <h1 className="text-5xl font-bold">
-                    <span className="text-primary-dark">Physio</span>
-                    <span className="text-secondary">Care</span>
+                    <span className="text-primary-dark">Cure</span>
+                    <span className="text-secondary">Ai</span>
                 </h1>
                 <div className="h-1 w-16 bg-primary mx-auto mt-2 rounded-full" />
             </div>

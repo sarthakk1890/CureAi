@@ -34,11 +34,11 @@ const Navbar: React.FC = () => {
                 <div className="text-2xl font-bold">
                     <span className={`transition-colors duration-300 ${shouldBeWhite ? 'text-primary-dark' : 'text-white'
                         }`}>
-                        Physio
+                        Cure
                     </span>
                     <span className={`transition-colors duration-300 ${shouldBeWhite ? 'text-secondary' : 'text-white'
                         }`}>
-                        Care
+                        Ai
                     </span>
                 </div>
 

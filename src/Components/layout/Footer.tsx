@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
             <div className="section__container footer__container">
                 <div className="footer__col">
                     <h3>
-                        Physio<span>Care</span>
+                        Cure<span>Ai</span>
                     </h3>
                     <p>
                         We are honored to be a part of your healthcare journey and committed
@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
                         <i className="ri-map-pin-2-fill"></i>M.A.M.C, Agroha
                     </p>
                     <p>
-                        <i className="ri-mail-fill"></i> support@physiocare.com
+                        <i className="ri-mail-fill"></i> support@cureai.com
                     </p>
                     <p>
                         <i className="ri-phone-fill"></i>9536773981
@@ -49,7 +49,7 @@ const Footer: React.FC = () => {
             </div>
             <div className="footer__bar">
                 <div className="footer__bar__content">
-                    <p>PhysioCare</p>
+                    <p>CureAi</p>
                     <div className="footer__socials">
                         <span>
                             <i className="ri-instagram-line"></i>
