@@ -32,7 +32,7 @@ const LoginSignUp = () => {
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-primary-light">
+        <div className="h-[100dvh] flex flex-col items-center justify-center bg-primary-light">
             {/* Logo */}
             <div className="mb-8 text-center">
                 <h1 className="text-5xl font-bold">

@@ -20,10 +20,7 @@ import Chatbot from './Components/pages/Chatbot/Chatbot';
 
 const App: React.FC = () => {
   const location = useLocation();
-
-  // List of paths where Navbar and Footer should not be displayed
   const excludeNavFooterPaths = ['/auth', '/doc-dashboard'];
-
   const shouldHideNavFooter = excludeNavFooterPaths.some(path =>
     location.pathname.startsWith(path)
   );
@@ -49,8 +46,8 @@ const App: React.FC = () => {
           <Route path="availability" element={<AvailabilityPage />} />
         </Route>
       </Routes>
-      <Chatbot />
       {!shouldHideNavFooter && <Footer />}
+      {!shouldHideNavFooter && <Chatbot />}
     </>
   );
 };
