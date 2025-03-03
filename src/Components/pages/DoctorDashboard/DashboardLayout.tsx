@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { FaCalendarAlt, FaUser, FaClock, FaSignOutAlt, FaBars, FaTimes } from 'react-icons/fa';
+import { useDispatch } from "react-redux";
+import { logout } from '../../../redux/reducers/userReducer';
+
 
 type SidebarLink = {
     name: string;
@@ -9,6 +12,7 @@ type SidebarLink = {
 };
 
 const DashboardLayout = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -21,6 +25,11 @@ const DashboardLayout = () => {
     const handleNavigation = (path: string) => {
         navigate(path);
         setIsSidebarOpen(false);
+    };
+
+    const handleLogout = () => {
+        dispatch(logout()); // Clear user state
+        navigate("/"); // Redirect to home page
     };
 
     return (
@@ -84,7 +93,10 @@ const DashboardLayout = () => {
 
                 {/* Logout Button */}
                 <div className="absolute bottom-8 w-64">
-                    <button className="w-full flex items-center px-6 py-3 text-text-light hover:bg-primary-light hover:text-primary-dark transition-colors">
+                    <button
+                        className="w-full flex items-center px-6 py-3 text-text-light hover:bg-primary-light hover:text-primary-dark transition-colors"
+                        onClick={handleLogout}
+                    >
                         <FaSignOutAlt className="w-5 h-5" />
                         <span className="ml-3">Logout</span>
                     </button>

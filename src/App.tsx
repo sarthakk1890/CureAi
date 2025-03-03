@@ -12,15 +12,17 @@ import DoctorDetails from './Components/pages/DoctorDetails';
 import BookAppointment from './Components/pages/BookAppointment';
 import LoginSignUp from './Components/pages/LoginSignUp';
 import './Components/styles/fontStyle.css';
-import DashboardLayout from './Components/pages/DoctorDashboard/DashboardLayout';
+import DocDashboardLayout from './Components/pages/DoctorDashboard/DashboardLayout';
+import PatDashboardLayout from './Components/pages/PatientDashboard/DashboardLayout';
 import MeetingsPage from './Components/pages/DoctorDashboard/MeetingsPage';
 import EditProfilePage from './Components/pages/DoctorDashboard/EditProfilePage';
 import AvailabilityPage from './Components/pages/DoctorDashboard/AvailabilityPage';
 import Chatbot from './Components/pages/Chatbot/Chatbot';
+import DoctorsList from './Components/pages/DoctorsList';
 
 const App: React.FC = () => {
   const location = useLocation();
-  const excludeNavFooterPaths = ['/auth', '/doc-dashboard'];
+  const excludeNavFooterPaths = ['/auth', '/doc-dashboard', '/patient-dashboard'];
   const shouldHideNavFooter = excludeNavFooterPaths.some(path =>
     location.pathname.startsWith(path)
   );
@@ -36,15 +38,19 @@ const App: React.FC = () => {
         <Route path="/store/:id" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/doctor/:id" element={<DoctorDetails />} />
+        <Route path="/doctors" element={<DoctorsList />} />
         <Route path="/doctor/:id/appointment" element={<BookAppointment />} />
         <Route path="/auth" element={<LoginSignUp />} />
 
-        <Route path="/doc-dashboard" element={<DashboardLayout />}>
+        <Route path="/doc-dashboard" element={<DocDashboardLayout />}>
           <Route index element={<MeetingsPage />} />
           <Route path="meetings" element={<MeetingsPage />} />
           <Route path="profile" element={<EditProfilePage />} />
           <Route path="availability" element={<AvailabilityPage />} />
         </Route>
+
+        <Route path="/patient-dashboard" element={<PatDashboardLayout />} />
+
       </Routes>
       {!shouldHideNavFooter && <Footer />}
       {!shouldHideNavFooter && <Chatbot />}

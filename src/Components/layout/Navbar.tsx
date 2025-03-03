@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+// import useAuthStatus from '../../hooks/isLoggedIn';
+import { FaUserCircle } from "react-icons/fa";
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 const Navbar: React.FC = () => {
     const [scrolled, setScrolled] = useState(false);
     const location = useLocation();
+    // const { isLoggedIn } = useAuthStatus();
+    const user = useSelector((state: RootState) => state.user.user);
+    const isAuthenticated = useSelector((state: RootState) => state.user.isAuthenticated);
+    const navigate = useNavigate();
 
     // Check if we're on the home page
     const isHomePage = location.pathname === '/';
@@ -68,28 +76,19 @@ const Navbar: React.FC = () => {
                     </li>
                     <li>
                         <Link
-                            to="/doc-dashboard"
+                            to="/doctors"
                             className={`transition-colors duration-200 ${shouldBeWhite
                                 ? 'text-text-light hover:text-primary-semidark'
                                 : 'text-white hover:text-primary-light'
                                 }`}
                         >
-                            DocDash
+                            Doctors
                         </Link>
                     </li>
                 </ul>
 
                 {/* Buttons */}
                 <div className="flex items-center space-x-4">
-                    <Link
-                        to="/auth"
-                        className={`hidden md:block px-4 py-2 font-medium transition-colors duration-200 ${shouldBeWhite
-                            ? 'text-primary-semidark hover:text-primary-dark'
-                            : 'text-white hover:text-primary-light'
-                            }`}
-                    >
-                        Login
-                    </Link>
                     <button
                         className={`px-6 py-2 rounded-lg transition-colors duration-200 font-medium ${shouldBeWhite
                             ? 'bg-secondary hover:bg-secondary-dark text-white'
@@ -98,6 +97,33 @@ const Navbar: React.FC = () => {
                     >
                         Contact Us
                     </button>
+                    {!isAuthenticated ? (
+                        <Link
+                            to="/auth"
+                            className={`hidden md:block px-4 py-2 font-medium transition-colors duration-200 ${shouldBeWhite
+                                ? 'text-primary-semidark hover:text-primary-dark'
+                                : 'text-white hover:text-primary-light'
+                                }`}
+                        >
+                            Login
+                        </Link>
+                    ) : (
+                        <span
+                            className={`hidden md:block px-4 py-2 font-medium transition-colors duration-200 cursor-pointer ${shouldBeWhite
+                                ? 'text-primary-semidark hover:text-primary-dark'
+                                : 'text-white hover:text-primary-light'
+                                }`}
+                            onClick={() => {
+                                if (user?.role === 'patient') {
+                                    navigate('/patient-dashboard');
+                                } else if (user?.role === 'doctor') {
+                                    navigate('/doc-dashboard');
+                                }
+                            }}
+                        >
+                            <FaUserCircle className={`color ${shouldBeWhite ? 'text-primary-semidark' : 'text-primary-light'} text-3xl`} />
+                        </span>
+                    )}
                 </div>
             </div>
         </nav>

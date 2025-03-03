@@ -1,38 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FaPhoneAlt, FaCalendarCheck, FaBriefcaseMedical, FaHospital, FaClock } from 'react-icons/fa';
-import Doctors from '../../static-data/doctorData.json';
-
-interface Doctor {
-    id: string;
-    name: string;
-    specialty: string;
-    yearsOfExperience: number;
-    hospital: string;
-    phone: string;
-    image: string;
-    about: string;
-}
+import { useGetDoctorByIdQuery } from '../../redux/api/doctorsAPI';
 
 const DoctorDetails: React.FC = () => {
     const { id } = useParams<{ id: string }>();
-    const [doctor, setDoctor] = useState<Doctor | null>(null);
     const navigate = useNavigate();
+
+    const { data, error, isLoading } = useGetDoctorByIdQuery(id!);
+    console.log(error, isLoading)
+    const doctor = data?.data;
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        setDoctor(Doctors.find((doc) => doc.id === id) || null);
     }, [id]);
 
-    if (!doctor) {
+
+    if (isLoading) {
         return (
             <div className="flex items-center justify-center min-h-screen">
-                <div className="animate-pulse flex space-x-4">
-                    <div className="rounded-full bg-primary-light h-12 w-12"></div>
-                    <div className="space-y-4">
-                        <div className="h-4 bg-primary-light rounded w-64"></div>
-                        <div className="h-4 bg-primary-light rounded w-52"></div>
-                    </div>
+                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-primary"></div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <div className="text-red-500 text-lg">
+                    An error occurred while fetching the doctor's details. Please try again later.
                 </div>
             </div>
         );
@@ -62,15 +58,21 @@ const DoctorDetails: React.FC = () => {
                             <div className="mt-4 space-y-4">
                                 <div className="flex items-center text-text-light">
                                     <FaBriefcaseMedical className="h-5 w-5 text-primary" />
-                                    <span className="ml-3">{doctor.specialty}</span>
+                                    <div className="ml-3 flex flex-wrap gap-2">
+                                        {doctor.expertise.map((item: string, index: number) => (
+                                            <span key={index} className="px-2 py-1 bg-primary-light/30 rounded-md text-sm">
+                                                {item}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
                                 <div className="flex items-center text-text-light">
                                     <FaClock className="h-5 w-5 text-primary" />
-                                    <span className="ml-3">{doctor.yearsOfExperience} years of experience</span>
+                                    <span className="ml-3">{doctor.experience} years of experience</span>
                                 </div>
                                 <div className="flex items-center text-text-light">
                                     <FaHospital className="h-5 w-5 text-primary" />
-                                    <span className="ml-3">{doctor.hospital}</span>
+                                    <span className="ml-3">{doctor.institute}</span>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +95,7 @@ const DoctorDetails: React.FC = () => {
                                 Call Doctor
                             </button>
                             <button
-                                onClick={() => navigate(`/doctor/${doctor.id}/appointment`)}
+                                onClick={() => navigate(`/doctor/${doctor._id}/appointment`)}
                                 className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-secondary hover:bg-secondary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary transition-colors duration-200"
                             >
                                 <FaCalendarCheck className="mr-2 h-5 w-5" />
